@@ -11,7 +11,7 @@ output "parameters_names" {
       }
       ], [
       for key in var.secrets : {
-        "valueFrom" : "/aws/reference/secretsmanager/${key}",
+        "valueFrom" : "/aws/reference/secretsmanager/${local.parameter_prefix}${key}",
         "name" : key,
       }
     ]

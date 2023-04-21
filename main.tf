@@ -44,7 +44,7 @@ resource "aws_iam_policy" "parameters_accessor" {
           flatten([
             for key, value in aws_secretsmanager_secret.secrets : [
               value.arn,
-              "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/aws/reference/secretsmanager/${key}",
+              "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/aws/reference/secretsmanager/${local.parameter_prefix}${key}",
             ]
           ])
         )
